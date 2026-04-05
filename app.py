@@ -23,8 +23,7 @@ if st.button("Calculate and Analyze Score"):
     with st.spinner("Analyzing..."):
         
         headers = {
-            "Accept": "text/html,application/xhtml+xml",
-            "content-type": "application/x-www-form-urlencoded",
+            "Accept": "text/html,application/xhtml+xml"
         }
         response = requests.get(link, headers=headers,timeout=60)
         st.write("Status Code:", response.status_code)
