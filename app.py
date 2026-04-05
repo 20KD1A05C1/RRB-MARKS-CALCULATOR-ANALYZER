@@ -21,8 +21,17 @@ if st.button("Calculate and Analyze Score"):
         st.stop()
 
     with st.spinner("Analyzing..."):
-
-        response = requests.get(link, headers={"User-Agent": "Mozilla/5.0"})
+        
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Accept": "text/html,application/xhtml+xml",
+            "Connection": "keep-alive"
+        }
+        response = requests.get(link, headers=headers,timeout=60)
+        st.write("Status Code:", response.status_code)
+        st.write(response.text[:1000])
+        st.write("-----------------...")
         soup = BeautifulSoup(response.text, "html.parser")
 
         # -------------------------
@@ -138,6 +147,9 @@ if st.button("Calculate and Analyze Score"):
         # -------------------------
         # 📊 Performance Radar Chart
         # -------------------------
+        if not sections:
+            st.error("⚠️ No sections found. Unable to generate chart.")
+            st.stop()
         st.subheader("📈 Performance Radar (Correct / Total) %")
 
         labels = list(sections.keys())
