@@ -23,10 +23,8 @@ if st.button("Calculate and Analyze Score"):
     with st.spinner("Analyzing..."):
         
         headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-            "Accept-Language": "en-US,en;q=0.9",
             "Accept": "text/html,application/xhtml+xml",
-            "Connection": "keep-alive"
+            "content-type": "application/x-www-form-urlencoded",
         }
         response = requests.get(link, headers=headers,timeout=60)
         st.write("Status Code:", response.status_code)
